@@ -12,39 +12,39 @@ mov dst, src
 #### Примеры
 Положить значение 3 в регистр ax
 ```asm
-mov ax, 3
+mov ax, 3       ; ax = 3
 ```
 Переместить содержимое регистра bx в регистр ax
 ```asm
-mov ax, bx
+mov ax, bx      ; ax = bx
 ```
 Переместить содержимое регистра bx увеличенное на 3 в регистр ax
 ```asm
-mov ax, bx + 3
+mov ax, bx + 3  ; ax = bx + 3
 ```
 Переместить значение, которое лежит по адресу bx в регистр ax
 ```asm
-mov ax, [bx]
+mov ax, [bx]    ; ax = *bx
 ```
 
 ## Сложение
 Положить в регистр ax значение `ax + bx`.
 ```asm
-add ax, bx  ## ax = ax + bx
+add ax, bx      ; ax = ax + bx
 ```
 
 ## Вычитание
 Положить в регистр ax значение `ax - bx`.
 ```asm
-add ax, bx  ## ax = ax - bx
+add ax, bx      ; ax = ax - bx
 ```
 
 ## Инкремент и декремент
 Положить в регигистр ax значение `ax + 1`.
 ```asm
-inc ax      ## ax++
+inc ax          ; ax++
 ```
 Положить в регигистр ax значение `ax - 1`.
 ```asm
-dec ax      ## ax--
+dec ax          ; ax--
 ```
