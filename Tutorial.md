@@ -49,42 +49,6 @@ inc ax      ; ax++
 dec ax      ; ax--
 ```
 
-#### Пример реализации функции
-Реализуем функцию add_value(x, y)
-В языке C реализация и вызов будут выглядеть так:
-```c
-int add_value(int x, int y)
-{
-    return x + y;
-}
-
-int main()
-{
-    int x, y = // ...
-    int z = add_value(x, y);
-}
-```
-На языке Ассемблера это примет следующий вид:
-```asm
-; Загрузка параметров в стек
-push y
-push x
-
-; Вызов функции
-call add_value
-jmp end
-
-; Определение функции
-add_value:
-    pop eax     ; достали из стека x и записали в eax
-    pop ebx     ; достали из стека y и записали в ebx
-add aex, abx    ; поместили в eax значение eax + ebx
-    ret         ; выход из функции
-; Завершение
-end:
-    nop
-```
-
 ## Передача управления
 
 #### Пример программы
@@ -121,6 +85,41 @@ call label
 int N
 ```
 
+### Пример реализации функции
+Реализуем функцию add_value(x, y)
+В языке C реализация и вызов будут выглядеть так:
+```c
+int add_value(int x, int y)
+{
+    return x + y;
+}
+
+int main()
+{
+    int x, y = // ...
+    int z = add_value(x, y);
+}
+```
+На языке Ассемблера это примет следующий вид:
+```asm
+; Загрузка параметров в стек
+push y
+push x
+
+; Вызов функции
+call add_value
+jmp end
+
+; Определение функции
+add_value:
+    pop eax     ; достали из стека x и записали в eax
+    pop ebx     ; достали из стека y и записали в ebx
+add aex, abx    ; поместили в eax значение eax + ebx
+    ret         ; выход из функции
+; Завершение
+end:
+    nop
+```
 
 ## Флаги и условные переходы
 
@@ -155,7 +154,7 @@ jnz     ; Jump if Not ZF
 Выполняется, если "ниже" [`ax < bx`], то есть перенос и `CF = 1`
 ```asm
 jc      ; Jump if C
-jb      ; Jump if Bellow    
+jb      ; Jump if Bellow
 jnae    ; Jump if Not Above or Equal
 ```
 
@@ -263,4 +262,17 @@ LESS:
     ; do 3
 ENDIF:
     ; do 4
+```
+
+## Отличие синтаксисов Intel и AT&T
+```
+_____________________________________________________________
+| Выражение         | Intel             | AT&T              |
+|___________________|___________________|___________________|
+| eax = 8           | mov eax, 8        | mov $8, %eax      |
+| stack.push(eax)   | push eax          | push %eax         |
+| eax = stack.pop() | pop eax           | pop %eax          |
+| eax = eax + ebx   | add eax, ebx      | add %ebx, %eax    |
+| eax = eax - 3     | sub 3, eax        | sub $3, %eax      |
+|___________________|___________________|___________________|
 ```
