@@ -267,13 +267,17 @@ ENDIF:
 
 ## Отличие синтаксисов Intel и AT&T
 ```
-_____________________________________________________________
-| Выражение         | Intel             | AT&T              |
-|___________________|___________________|___________________|
-| eax = 8           | mov eax, 8        | mov $8, %eax      |
-| stack.push(eax)   | push eax          | push %eax         |
-| eax = stack.pop() | pop eax           | pop %eax          |
-| eax = eax + ebx   | add eax, ebx      | add %ebx, %eax    |
-| eax = eax - 3     | sub 3, eax        | sub $3, %eax      |
-|___________________|___________________|___________________|
+_____________________________________________________________________
+| Выражение         | Intel                 | AT&T                  |
+|___________________|_______________________|_______________________|
+| instr(dst, src)   | instr dst src         | instr src, dst        |
+| 20                | 20h                   | 0x20                  |
+| eax = ebx + 20    | mov eax,[ebx+20h]     | mov 0x20(%ebx), %eax  |
+| eax = 8           | mov eax, 8            | mov $8, %eax          |
+| stack.push(eax)   | push eax              | push %eax             |
+| eax = stack.pop() | pop eax               | pop %eax              |
+| eax = eax + ebx   | add eax, ebx          | add %ebx, %eax        |
+| eax = eax - 3     | sub 3, eax            | sub $3, %eax          |
+| // comment        | ; comment             | # comment             |
+|___________________|_______________________|_______________________|
 ```
