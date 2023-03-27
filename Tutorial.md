@@ -1,5 +1,9 @@
 # Язык ассемблера. Команды и инструкции
 
+### [Указатель по командам Intel x86](http://www.mathemainzel.info/files/x86asmref.html)
+
+### [Официальная документация от Intel](http://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-manual-325462.pdf)
+
 ## Общие команды
 ### Переместить значение в ячейку память
 Значение перемещается из `src` в `dst`
